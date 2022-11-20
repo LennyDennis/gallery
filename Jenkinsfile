@@ -29,11 +29,10 @@ pipeline {
                 sh 'node server'
                 } 
         }
-        stage('Run the application'){
+        stage('Run tests'){
             steps {
                 sh 'npm test'
               }
             }
-
     }
  }
