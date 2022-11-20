@@ -24,15 +24,16 @@ pipeline {
                 } 
             }
         }
+       stage('Run tests'){
+            steps {
+                sh 'npm test'
+            }
+       }
         stage('Run the application'){
             steps {
                 sh 'node server'
                 } 
         }
-        stage('Run tests'){
-            steps {
-                sh 'npm test'
-              }
-            }
+
     }
  }
