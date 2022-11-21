@@ -8,7 +8,6 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                echo 'Cloning repository'
                 git 'https://github.com/LennyDennis/gallery'
             }
         }
@@ -17,16 +16,11 @@ pipeline {
                 sh 'npm install'
             }
         }
-               stage('Run tests'){
-                    steps {
-                        sh 'npm test'
-                    }
-               }
-                stage('Run the application'){
-                    steps {
-                        sh 'node server'
-                        }
-                }
+//         stage('Run tests'){
+//             steps {
+//             sh 'npm test'
+//             }
+//         }
         stage('Deploy To Heroku'){
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
@@ -34,7 +28,17 @@ pipeline {
                 } 
             }
         }
-
+//         stage('Run the application'){
+//             steps {
+//                 sh 'node server'
+//             }
+//         }
+        post {
+            success {
+                // echo "sucess"
+                slackSend color: "red", message: "successful"
+            }
+        }
 
     }
  }
