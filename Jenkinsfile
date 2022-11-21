@@ -33,12 +33,12 @@ pipeline {
 //                 sh 'node server'
 //             }
 //         }
+
+    }
         post {
             success {
-                // echo "sucess"
                 slackSend color: "red", message: "successful build"
             }
         }
 
-    }
  }
