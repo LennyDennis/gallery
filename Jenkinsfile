@@ -16,11 +16,11 @@ pipeline {
                 sh 'npm install'
             }
         }
-//         stage('Run tests'){
-//             steps {
-//             sh 'npm test'
-//             }
-//         }
+        stage('Run tests'){
+            steps {
+            sh 'npm test'
+            }
+        }
         stage('Deploy To Heroku'){
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
@@ -28,17 +28,16 @@ pipeline {
                 } 
             }
         }
-//         stage('Run the application'){
-//             steps {
-//                 sh 'node server'
-//             }
-//         }
-
     }
-        post {
-            success {
-                slackSend color: "red", message: "successful build"
-            }
+    post {
+        success {
+            slackSend color: "good", message: "Success build for ${BUILD_ID} \
+            Heroku link : https://arcane-tundra-48108.herokuapp.com/ \
+            GitHub link : https://github.com/LennyDennis/gallery"
         }
+         failure {
+            slackSend color: "danger", message: "Build for ${BUILD_ID} failed"
+        }
+    }
 
  }
