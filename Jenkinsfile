@@ -36,7 +36,7 @@ pipeline {
         post {
             success {
                 // echo "sucess"
-                slackSend color: "red", message: "successful"
+                slackSend color: "red", message: "successful build"
             }
         }
 
