@@ -34,8 +34,7 @@ pipeline {
             slackSend color: "good", message: "Success build for ${BUILD_ID} \
             Heroku link : https://arcane-tundra-48108.herokuapp.com/ \
             GitHub link : https://github.com/LennyDennis/gallery"
-        }
-       success {
+
             emailext attachLog: true,
                 body:
                     """
