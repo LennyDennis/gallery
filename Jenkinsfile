@@ -38,18 +38,23 @@ pipeline {
             emailext attachLog: true,
                 body:
                     """
-                    <p>EXECUTED: Job <b>\'${env.JOB_NAME}:${env.BUILD_NUMBER})\'</b></p>
-                    <p>
-                    View console output at
-                    "<a href="${env.BUILD_URL}">${env.JOB_NAME}:${env.BUILD_NUMBER}</a>"
-                    </p>
-                      <p><i>(Build log is attached.)</i></p>
+                      <p>Success build for ${BUILD_ID}</p>
                     """,
                 subject: "Status: 'SUCCESS' -Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'",
                 to: 'lennydennis@gmail.com'
         }
          failure {
             slackSend color: "danger", message: "Build for ${BUILD_ID} failed"
+
+            emailext attachLog: true,
+                     body:
+                         """
+                           <p>Build for ${BUILD_ID} failed</p>
+
+                         """,
+                     subject: "Status: FAILURE -Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'",
+                     to: 'lennydennis@gmail.com'
+
         }
     }
 
