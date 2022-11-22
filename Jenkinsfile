@@ -16,11 +16,11 @@ pipeline {
                 sh 'npm install'
             }
         }
-//         stage('Run tests'){
-//             steps {
-//             sh 'npm test'
-//             }
-//         }
+        stage('Run tests'){
+            steps {
+            sh 'npm test'
+            }
+        }
         stage('Deploy To Heroku'){
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
