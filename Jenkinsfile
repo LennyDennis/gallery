@@ -46,7 +46,7 @@ pipeline {
                       <p><i>(Build log is attached.)</i></p>
                     """,
                 subject: "Status: 'SUCCESS' -Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'",
-                to: 'YOUREMAIL@gmail.com'
+                to: 'lennydennis@gmail.com'
         }
          failure {
             slackSend color: "danger", message: "Build for ${BUILD_ID} failed"
