@@ -24,7 +24,7 @@ pipeline {
         stage('Deploy To Heroku'){
             steps {
                 withCredentials([usernameColonPassword(credentialsId: 'heroku', variable: 'HEROKU_CREDENTIALS' )]){
-                sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/arcane-tundra-48108.git master'
+                sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/fast-beyond-88736.git master'
                 } 
             }
         }
@@ -32,7 +32,7 @@ pipeline {
     post {
         success {
             slackSend color: "good", message: "Success build for ${BUILD_ID} \
-            Heroku link : https://arcane-tundra-48108.herokuapp.com/ \
+            Heroku link : https://fast-beyond-88736.herokuapp.com/ \
             GitHub link : https://github.com/LennyDennis/gallery"
 
             emailext attachLog: true,
