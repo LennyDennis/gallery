@@ -38,7 +38,7 @@ pipeline {
             emailext attachLog: true,
                 body:
                     """
-                      <p>Success build for ${BUILD_ID}</p>
+                      <p>Success build for id ${BUILD_ID}</p>
                     """,
                 subject: "Status: 'SUCCESS' -Job \'${env.JOB_NAME}:${env.BUILD_NUMBER}\'",
                 to: 'lennydennis@gmail.com'
